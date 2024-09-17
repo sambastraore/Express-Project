@@ -1,7 +1,7 @@
 This project is an express js api containerized with docker and orchestrated with docker-compose. It's for academic purpose. It has three endpoints :
-GET test/ : to get all employees in the table.
-GET test/employee/{id} : to get a specific employee
-DELETE test/employee/{id} : to delete a specific employee
+- GET test/ : to get all employees in the table.
+- GET test/employee/{id} : to get a specific employee
+- DELETE test/employee/{id} : to delete a specific employee
 
 The name of the database is already set as an environment variable (employee_db) but in its current state, the endpoints are written to use a table named 'employees' with at least a field 'id'.
 
