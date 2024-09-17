@@ -1,12 +1,19 @@
-This project is an express js api containerized with docker and orchestrated with docker-compose. It's for academic purpose. It has three endpoints :
+# Overview
+This project is an express js api containerized with docker and orchestrated with docker-compose. It's for academic purpose.
+
+# Endpoints
+It has three endpoints :
 - GET test/ : to get all employees in the table.
 - GET test/employee/{id} : to get a specific employee
 - DELETE test/employee/{id} : to delete a specific employee
 
+
+# Execution Process
 The name of the database is already set as an environment variable (employee_db) but in its current state, the endpoints are written to use a table named 'employees' with at least a field 'id'.
 
 To run the containers (the **mysql_db** and the **expressjs_api** containers), move to the **express-project** directory and use this command : **docker-compose --env-file ./docker-compose.env up --build -d**
 
+# Testing the API
 After that, the containers are running but to test the api, we need to have some data. 
 For that, enter the mysql_db container in terminal mode and connect with root (the password is root). 
 Then, use these queries : 
