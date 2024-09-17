@@ -6,7 +6,6 @@ An image for the API is pushed into my personal docker hub : https://hub.docker.
 - Docker Compose version v2.20.2-desktop.1
 
 # Endpoints
-It has three endpoints :
 - GET test/ : to get all employees in the table.
 - GET test/employee/{id} : to get a specific employee
 - DELETE test/employee/{id} : to delete a specific employee
