@@ -2,6 +2,9 @@
 This project is an express js api containerized with docker and orchestrated with docker-compose. It's for academic purpose.
 An image for the API is pushed into my personal docker hub : https://hub.docker.com/repository/docker/sambastraore/my_app/general
 
+- Docker version 24.0.5, build ced0996
+- Docker Compose version v2.20.2-desktop.1
+
 # Endpoints
 It has three endpoints :
 - GET test/ : to get all employees in the table.
