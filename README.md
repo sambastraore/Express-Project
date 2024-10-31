@@ -26,7 +26,7 @@ Then, use these queries :
 id int NOT NULL AUTO_INCREMENT,
 name varchar(45) DEFAULT NULL,
 employee_code varchar(45) DEFAULT NULL,
-salary int DEFAULT NULL
+salary int DEFAULT NULL,
 PRIMARY KEY (id)
 );
 
