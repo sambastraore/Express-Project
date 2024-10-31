@@ -15,3 +15,6 @@ module.exports.deleteEmployeeById = async (id) => {
     const [record] = await db.query("DELETE FROM employees WHERE id = ?",[id])
     return record.affectedRows;
 }
+
+
+

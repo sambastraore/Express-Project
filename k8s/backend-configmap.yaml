@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+data:
+  DB_HOST: "mysql-db"
+  DB_NAME: "employee_db"
+  DB_PORT: "3306"
+

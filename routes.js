@@ -16,6 +16,19 @@ router.get('/employee/:id', async (req,res) =>{
         res.send(employee);
 })
 
+router.get('/health/ready', async (req, res) => {
+    try {
+        await db.query('SELECT 1'); 
+        res.status(200).send('Ready');
+    } catch (error) {
+        res.status(503).send('Service Unavailable'); 
+    }
+});
+
+router.get('/health/live', (req, res) => {
+    res.status(200).send('Alive'); 
+});
+
 
 router.delete('/employee/:id', async (req,res) =>{
     const affectedRows = await service.deleteEmployeeById(req.params.id);
@@ -31,3 +44,5 @@ router.post('/users',(req,res) => {
     res.send("This was a test")
 })
 module.exports = router;
+
+
