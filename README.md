@@ -20,12 +20,12 @@ An image for the API is pushed into my personal docker hub : https://hub.docker.
 The name of the database is already set as an environment variable (employee_db) but in its current state, the endpoints are written to use a table named 'employees' with at least a field 'id'.
 
 - To run the containers with docker compose (the **mysql_db** and the **expressjs_api** containers), move to the **express-project** directory and use this command : **docker-compose --env-file ./docker-compose.env up --build -d**
-- If you have a kubernets or minikube cluster, you can deploy the manifests in **k8s** folder (with the command **kubectl apply -f <filename>.yaml** for each manifest). Feel free to modify the number of replicas. 
+- If you have a kubernetes or minikube cluster, you can deploy the manifests in **k8s** folder (with the command **kubectl apply -f filename.yaml** for each manifest). Feel free to modify the number of replicas. 
 
 
 # Testing the API
 After that, the containers are running but to test the api, we need to have some data. 
-For that, enter the mysql_db container in terminal mode and connect with root (the password is root) if you are using docker compose. If you are in a kubernetes cluster, you can access the mysql pod with this command : **kubectl exec -it <mysql-pod-name> -- /bin/bash**. Now, you can enter the mysql command using root as username and root as password.
+For that, enter the mysql container in terminal mode and connect with root (the password is root) if you are using docker compose. If you are in a kubernetes cluster, you can access the mysql pod with this command : **kubectl exec -it mysql-pod-name -- /bin/bash**. Now, you can enter the mysql command using root as username and root as password.
 Then, use these queries : 
 1) USE employee_db;
   
