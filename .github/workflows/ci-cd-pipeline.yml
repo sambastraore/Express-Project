@@ -71,7 +71,7 @@ jobs:
         run: |
           az containerapp update \
             --name my-container-app \
-            --resource-group my-resource-group \
+            --resource-group my-app-resource-group \
             --image ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
 
     
