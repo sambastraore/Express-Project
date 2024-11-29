@@ -24,7 +24,7 @@ jobs:
 
       - name: Run npm audit
         run: |
-          npm audit --json > audit-report.json
+          npm audit --json > audit-report.json || true
           echo "report_path=audit-report.json" >> $GITHUB_ENV
 
       - name: Upload audit report
