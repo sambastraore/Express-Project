@@ -28,7 +28,7 @@ jobs:
           echo "report_path=audit-report.json" >> $GITHUB_ENV
 
       - name: Upload audit report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: audit-report
           path: ${{ env.report_path }}
