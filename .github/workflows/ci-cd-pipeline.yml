@@ -1,0 +1,71 @@
+name: Scan, Build, Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  checkout_and_scan:
+    runs-on: ubuntu-latest
+    outputs:
+      scan_report: ${{ steps.scan.outputs.report_path }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run npm audit
+        run: |
+          npm audit --json > audit-report.json
+          echo "report_path=audit-report.json" >> $GITHUB_ENV
+
+      - name: Upload audit report
+        uses: actions/upload-artifact@v2
+        with:
+          name: audit-report
+          path: ${{ env.report_path }}
+          
+    
+
+  build_and_push:
+    needs: checkout_and_scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Build Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} .
+          docker tag ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/my-app:latest
+
+      - name: Push Docker Image
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/my-app:latest
+
+  deploy_to_azure:
+    needs: build_and_push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure Container Apps
+        run: |
+          az containerapp update \
+            --name my-container-app \
+            --resource-group my-resource-group \
+            --image ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
+
+    
